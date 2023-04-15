@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshagent(['DeployDemo']) {
-    			sh 'scp -o StrictHostKeyChecking=no  /var/lib/jenkins/workspace/PipeLineScriptCICD/target/demo.war ubuntu@3.108.184.199:/var/lib/tomcat9/webapps'
+    			sh 'scp -o StrictHostKeyChecking=no  /var/lib/jenkins/workspace/PipeLineJenkinsFile/target/demo.war ubuntu@3.108.184.199:/var/lib/tomcat9/webapps'
 		        }
                 
             }

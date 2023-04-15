@@ -1,0 +1,23 @@
+# Use an official maven runtime as a parent image
+FROM maven:3.8.1-jdk-11-slim
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the pom.xml and src directories into the container at /app
+COPY pom.xml .
+COPY src/ ./src/
+
+# Run Maven to build the application
+RUN mvn clean package -DskipTests
+
+# Expose port 8080
+EXPOSE 8080
+
+# Set the startup command to run the JAR file
+CMD ["java", "-jar", "target/<your-project-name>.jar"]
+
+
+docker build -t <docker-username>/<image-name>:<tag> .
+docker login
+docker push <docker-username>/<image-name>:<tag>
